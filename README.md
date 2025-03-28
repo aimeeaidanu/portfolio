@@ -1,6 +1,8 @@
+<img src="/public/cover.jpg" alt="Cover image representing Nim, a personal website template" width="100%" />
+
 Aidan Chen's personal portflio website built with Next.js 15, React 19, Tailwind CSS v4, and Motion. Designed for developers, designers, and founders, it combines minimalism with delightful animated components powered by [Motion-Primitives](https://motion-primitives.com).
 
-Live demo: [https://nim-fawn.vercel.app](https://nim-fawn.vercel.app)
+Live demo: [https://aidanchen.vercel.app](https://aidanchen.vercel.app)
 
 ## Features
 
