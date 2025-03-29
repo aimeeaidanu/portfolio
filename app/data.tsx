@@ -189,10 +189,10 @@ export const BLOG_POSTS: BlogPost[] = [
     uid: 'blog-1',
   },
   {
-    title: 'Why I left my job to start my own company',
+    title: 'Why I started my own company as a high school student',
     description:
-      'A deep dive into my decision to leave my job and start my own company',
-    link: '/blog/exploring-the-intersection-of-design-ai-and-design-engineering',
+      'A deep dive into my decision to start my own company, Aidansforms',
+    link: '/blog/why-i-started-my-own-company-as-a-high-school-student',
     uid: 'blog-2',
   },
   {
