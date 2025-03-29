@@ -208,22 +208,22 @@ export const SOCIAL_LINKS: SocialLink[] = [
   {
     label: 'Github',
     link: 'https://github.com/aimeeaidanu',
-    icon: <LuGithub />
+    icon: <LuGithub className="w-5 h-5 md:w-3.5 md:h-3.5" />
   },
   {
     label: 'Twitter',
     link: 'https://twitter.com/aimeeaidanu',
-    icon: <LuTwitter />
+    icon: <LuTwitter className="w-5 h-5 md:w-3.5 md:h-3.5" />
   },
   {
     label: 'LinkedIn',
     link: 'https://www.linkedin.com/in/aidan-chen',
-    icon: <LuLinkedin />
+    icon: <LuLinkedin className="w-5 h-5 md:w-3.5 md:h-3.5" />
   },
   {
     label: 'Instagram',
     link: 'https://www.instagram.com/aimeeaidanu',
-    icon: <LuInstagram />
+    icon: <LuInstagram className="w-5 h-5 md:w-3.5 md:h-3.5" />
   },
 ]
 
