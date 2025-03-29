@@ -19,6 +19,7 @@ import {
   BLOG_POSTS,
   EMAIL,
   SOCIAL_LINKS,
+  RESEARCH_PROJECTS,
 } from './data'
 import { useState } from 'react'
 
@@ -174,6 +175,41 @@ export default function Personal() {
         </div>
       </motion.section>
 
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
+        <h3 className="mb-3 text-lg font-medium">Research</h3>
+        <div className="flex flex-col space-y-0">
+          <AnimatedBackground
+            enableHover
+            className="h-full w-full rounded-lg bg-zinc-100 dark:bg-zinc-900/80"
+            transition={{
+              type: 'spring',
+              bounce: 0,
+              duration: 0.2,
+            }}
+          >
+            {RESEARCH_PROJECTS.map((research) => (
+              <Link
+                key={research.id}
+                className="-mx-3 rounded-xl px-3 py-3"
+                href={research.link}
+                data-id={research.id}
+              >
+                <div className="flex flex-col space-y-1">
+                  <h4 className="font-normal dark:text-zinc-100 line-clamp-1">
+                    {research.name}
+                  </h4>
+                  <p className="text-zinc-500 dark:text-zinc-400 line-clamp-2">
+                    {research.description}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </AnimatedBackground>
+        </div>
+      </motion.section>
       <motion.section
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
