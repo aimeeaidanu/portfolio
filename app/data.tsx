@@ -1,9 +1,9 @@
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect"
-import { Github } from "lucide-react"
+import Link from "next/link"
 import { AnimatePresence, motion } from "motion/react"
 import Image from "next/image"
 import { useState } from "react"
-import { LuGithub, LuInstagram, LuLinkedin, LuTwitter } from "react-icons/lu"
+import { LuArrowUpRight, LuExternalLink, LuGithub, LuInstagram, LuLinkedin, LuTwitter } from "react-icons/lu"
 
 type Project = {
   name: string
@@ -63,10 +63,12 @@ export const Icon = ({ className, ...rest }: any) => {
 const Card = ({
   title,
   icon,
+  link = "",
   children,
 }: {
   title: string;
   icon: React.ReactNode;
+  link?: string;
   children?: React.ReactNode;
 }) => {
   const [hovered, setHovered] = useState(false);
@@ -92,9 +94,23 @@ const Card = ({
         <div className="text-center group-hover/canvas-card:-translate-y-4 group-hover/canvas-card:opacity-0 transition duration-200 w-full  mx-auto flex items-center justify-center">
           {icon}
         </div>
-        <h2 className="dark:text-white text-xl opacity-0 group-hover/canvas-card:opacity-100 relative z-10 text-black mt-4  font-bold group-hover/canvas-card:text-white group-hover/canvas-card:-translate-y-2 transition duration-200">
-          {title}
-        </h2>
+        {link ? (
+          <Link
+            href={link}
+            target="_blank"
+            className="group flex items-center hover:text-zinc-200 dark:text-white text-xl opacity-0 group-hover/canvas-card:opacity-100 relative z-10 text-black mt-4  font-bold group-hover/canvas-card:text-white group-hover/canvas-card:-translate-y-2 transition duration-200"
+          >
+            <span className="relative inline-block">
+              {title}
+              <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-100 transition-all duration-200 group-hover:max-w-full"></span>
+            </span>
+            <LuArrowUpRight className="inline-block ml-2 w-5 h-5" />
+          </Link>
+        ) : (
+          <p className="dark:text-white text-xl opacity-0 group-hover/canvas-card:opacity-100 relative z-10 text-black mt-4  font-bold group-hover/canvas-card:text-white group-hover/canvas-card:-translate-y-2 transition duration-200">
+            {title}
+          </p>
+        )}
       </div>
     </div>
   );
@@ -131,7 +147,7 @@ export const PROJECTS: Project[] = [
     video:
       'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/newProfileItem/d898be8a-7037-4c71-af0c-8997239b050d.mp4?_a=DATAdtAAZAA0',
     id: 'project1',
-    image: <Card title="Aidansforms" icon={<Image src="/aidansforms-icon-transparent.png" alt="Aidansforms" width={80} height={80} />}>
+    image: <Card title="Aidansforms" link="https://www.aidansform.com/" icon={<Image src="/aidansforms-icon-transparent.png" alt="Aidansforms" width={80} height={80} className="dark:invert" />}>
             <CanvasRevealEffect
               animationSpeed={3}
               containerClassName="bg-black"
@@ -142,7 +158,7 @@ export const PROJECTS: Project[] = [
               dotSize={2}
             />
             {/* Radial gradient for the cute fade */}
-            {/* <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50 dark:bg-black/90" /> */}
+            <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50 dark:bg-black/90 rounded-2xl" />
           </Card>
   },
   {
@@ -152,7 +168,7 @@ export const PROJECTS: Project[] = [
     video:
       'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/XSfIvT7BUWbPRXhrbLed/ee6871c9-8400-49d2-8be9-e32675eabf7e.mp4?_a=DATAdtAAZAA0',
     id: 'project2',
-    image:  <Card title="Project Mama" icon={<AceternityIcon />}>
+    image:  <Card title="Project Mama" link="https://www.projectmama.ai" icon={<AceternityIcon />}>
               <CanvasRevealEffect
                 animationSpeed={3}
                 containerClassName="bg-sky-600"
@@ -165,25 +181,25 @@ export const PROJECTS: Project[] = [
 export const RESEARCH_PROJECTS: ResearchProject[] = [
   {
     name: 'Viability of Applying Large Language Models to Indoor Climate Sensor and Health Data for Scientific Discovery',
-    description: `We developed an indoor climate monitoring system deployed to homes in polluted areas of the Philippines. We collected participants' medical records including smoking history and methods of cooking, as well as measuring their heart and lung health via electrocardiogram and spirometer tests. We found that indoor temperatures can exceed published macroclimate temperatures by 9 degrees, indoor pollution is just as detrimental to health as secondhand smoke, CO2 levels in high-end hotels in the USA may be comparable to the low-income homes next to large trash landfills in Manila, and that the air quality on airplanes and trains is often borderline unhealthy. Additionally, we trained several large language models (LLMs) on our pollution and medical records data to explore the viability of using LLMs to accelerate scientific discoveries by analyzing patterns in largescale datasets. We then tested 3 AI systems-GPT4 (OpenAI), Gemini 1.5 Pro (Google), Claude 3 Opus (Anthropic)-and found that Anthropic's model has a slight edge over that of OpenAI and Google on our datasets, and that modern LLMs in general are just as good as human physicians and scientists in formulating research hypotheses and selecting subjects for experiments.`,
+    description: `Developed software to manage large collection of indor climate sensors and designed the AI algorithm to analyze the large datasets.`,
     link: 'https://doi.org/10.1109/ghtc56179.2023.10354577',
     id: 'research4',
   },
   {
     name: 'Design and Feasibility of a Community Motorcycle Ambulance System in the Philippines',
-    description: `This study investigates the potential for motorcycle ambulance (motorlance) deployment in Metro Manila and Iloilo City to improve emergency medical care in high-traffic, underserved regions of the Philippines. VSee, a humanitarian technology company, has organized numerous free clinics in the Philippines and identified a critical need for improved emergency services. Motorlances offer a fast, affordable alternative to traditional ambulances, particularly in congested urban settings and remote rural locations. Pilot programs in Malawi, Thailand, and Iran have demonstrated significant improvements in response times and cost-efficiency with motorlance systems. This study presents a framework for motorlance operation and identifies three potential pilot locations: Mandaluyong, Smokey Mountain, and Iloilo City. Site visits, driver interviews, and user surveys indicate public trust in the motorlance concept and positive reception to potential motorlance deployment. Cost analysis verifies the financial feasibility of motorlance systems. Future work will focus on implementing a physical pilot in Mandaluyong, with the aim of expanding service to similar regions contingent on the Mandaluyong pilot's success.`,
+    description: `Helped investigate the potential for motorcycle ambulance (motorlance) deployment in Metro Manila and Iloilo City to improve emergency medical care in high-traffic`,
     link: 'https://doi.org/10.1109/ghtc56179.2023.10354577',
     id: 'research3',
   },
   {
     name: 'A Building Blocks Approach to Implementing a Telehealth Clinic Model to Improve Primary Care Access in the Philippines: A Large-scale Pilot Project',
-    description: 'A limited number of healthcare workers and cost constraints limit primary care access in the Philippines. To test telehealth as a low-cost and effective solution, a large-scale digital health clinic was implemented in the selected urban and rural communities. In collaboration with local authorities, our pilot telemedicine clinic was implemented for 3 days in January 2023. Patients were registered and their vitals were assessed before they were seen by a remote United States-based licensed physician who provided recommendations for treatment. Medical devices with real-time streaming capabilities, such as electronic stethoscopes, were utilized to enhance remote examinations. A total of 322 patients were treated at the telehealth clinic, of which 218 completed a population health survey. A large proportion of patients had a doctor visit more than 12 months prior (39.2%) and had not received a dental examination (86.3%) or an eye examination within the past year (84.4%). Most patients had access to a smartphone (69.7%). A lower proportion had access to an internet connection that was sufficient for video calls (57.9%) or a laptop (8.5%). Our clinic demonstrated that telehealth is a feasible solution to improve primary care access for disadvantaged communities in the Philippines.',
+    description: 'Assisted in the design and implementation of a free telehealth clinic in the Philippines.',
     link: 'https://doi.org/10.1109/ghtc56179.2023.10354577',
     id: 'research2',
   },
   {
     name: 'Viability of Mobile Forms for Population Health Surveys in Low Resource Areas',
-    description: 'Population health surveys are an important tool to effectively allocate limited resources in low resource communities. In such an environment, surveys are often done by local population with pen and paper. Data thus collected is difficult to tabulate and analyze. We conducted a series of interviews and experiments in the Philippines to assess if mobile forms can be a viable and more efficient survey method. We first conducted pilot interviews and found 60% of the local surveyors actually preferred mobile forms over paper. We then built a software that can generate mobile forms that are easy to use, capable of working offline, and able to track key metrics such as time to complete questions. Our mobile form was field tested in three locations in the Philippines with 33 surveyors collecting health survey responses from 266 subjects. The percentage of surveyors preferring mobile forms increased to 76% after just using the form a few times. The results demonstrate our mobile form is a viable method to conduct large scale population health surveys in a low resource environment.',
+    description: 'Created the online/offline mobile form software (Aidansforms) from scratch to collect data in low resource areas.',
     link: 'https://doi.org/10.1109/ghtc56179.2023.10354577',
     id: 'research1',
   },
