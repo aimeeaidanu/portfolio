@@ -6,6 +6,7 @@ import { SOCIAL_LINKS } from './data'
 import React from 'react'
 import { motion } from 'motion/react'
 import { LuMail } from 'react-icons/lu'
+import { usePathname } from 'next/navigation'
 
 const VARIANTS_CONTAINER = {
   hidden: { opacity: 0 },
@@ -27,6 +28,8 @@ const TRANSITION_SECTION = {
 }
 
 export function Header() {
+  const pathname = usePathname() // Get the current URL path
+
   return (
     <header className="mb-8 flex items-center justify-between">
       <motion.main
@@ -48,35 +51,37 @@ export function Header() {
           >
             Founder and CEO of Aidansforms. 
           </TextEffect>
-          <motion.section
-            variants={VARIANTS_SECTION}
-            transition={TRANSITION_SECTION}
-          >
-            <div className="absolute flex items-center justify-start space-x-0 pt-1 left-[-10px]">
-              <Magnetic springOptions={{ bounce: 0 }} intensity={0.25}>
-                <Link
-                  href={`mailto:aidan@aidansform.com`}
-                  className="group relative inline-flex shrink-0 items-center gap-2 rounded-full bg-none px-2.5 py-1 text-sm text-black transition-colors duration-200 hover:bg-zinc-50 dark:hover:bg-zinc-900 dark:hover:text-zinc-50 dark:bg-black dark:text-zinc-100"
-                >              
-                  <div className="flex items-center gap-1.5">
-                    <LuMail className="w-4.5 h-4.5" />
-                  </div>
-                </Link>
-              </Magnetic>
-              {SOCIAL_LINKS.map((link) => (
-                <Magnetic springOptions={{ bounce: 0 }} intensity={0.25} key={link.link}>
+          {pathname === '/' && (
+            <motion.section
+              variants={VARIANTS_SECTION}
+              transition={TRANSITION_SECTION}
+            >
+              <div className="absolute flex items-center justify-start space-x-0 pt-1 left-[-10px]">
+                <Magnetic springOptions={{ bounce: 0 }} intensity={0.25}>
                   <Link
-                    href={link.link}
+                    href={`mailto:aidan@aidansform.com`}
                     className="group relative inline-flex shrink-0 items-center gap-2 rounded-full bg-none px-2.5 py-1 text-sm text-black transition-colors duration-200 hover:bg-zinc-50 dark:hover:bg-zinc-900 dark:hover:text-zinc-50 dark:bg-black dark:text-zinc-100"
                   >              
                     <div className="flex items-center gap-1.5">
-                      {React.cloneElement(link.icon, { className: 'w-4.5 h-4.5' })}
+                      <LuMail className="w-4.5 h-4.5" />
                     </div>
                   </Link>
                 </Magnetic>
-              ))}
-            </div>
-          </motion.section>
+                {SOCIAL_LINKS.map((link) => (
+                  <Magnetic springOptions={{ bounce: 0 }} intensity={0.25} key={link.link}>
+                    <Link
+                      href={link.link}
+                      className="group relative inline-flex shrink-0 items-center gap-2 rounded-full bg-none px-2.5 py-1 text-sm text-black transition-colors duration-200 hover:bg-zinc-50 dark:hover:bg-zinc-900 dark:hover:text-zinc-50 dark:bg-black dark:text-zinc-100"
+                    >              
+                      <div className="flex items-center gap-1.5">
+                        {React.cloneElement(link.icon, { className: 'w-4.5 h-4.5' })}
+                      </div>
+                    </Link>
+                  </Magnetic>
+                ))}
+              </div>
+            </motion.section>
+          )}
         </div>
       </motion.main>
     </header>
